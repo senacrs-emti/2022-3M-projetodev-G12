@@ -1,6 +1,9 @@
 #https://pysource.com/2021/10/19/simple-color-recognition-with-opencv-and-python/
 from tkinter import E
 import cv2
+import time
+import requests
+import json
 
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
@@ -14,19 +17,18 @@ while True:
     cx = int(width / 2)
     cy = int(height / 2)
 
-    # Pick pixel value
     pixel_center = hsv_frame[cy, cx]
     hue_value = pixel_center[0]
 
     color = "Undefined"
 
-    if (hue_value >= 45 and hue_value <= 80):
+    if (hue_value >= 40 and hue_value <= 90):
         color = "GREEN"
 
-    elif (hue_value >= 90 and hue_value <= 180):
+    elif (hue_value >= 90 and hue_value <= 190):
         color = "BLACK"
 
-    elif (hue_value >= 0 and hue_value <= 35):
+    elif (hue_value >= 3 and hue_value <= 35):
         color = "RED"
 
     else:
@@ -40,7 +42,14 @@ while True:
     cv2.putText(frame, color, (cx - 200, 100), 0, 3, (b, g, r), 5)
     cv2.circle(frame, (cx, cy), 5, (25, 25, 25), 3)
 
+    print(color)
+
     cv2.imshow("Frame", frame)
+
+    data = {'cor': color}
+
+    x = requests.post("http://hiperwaves.com/endpoint/api.php", json=data)
+
     key = cv2.waitKey(1)
     if key == 27:
         break
