@@ -8,11 +8,8 @@
 ## Como Funciona
 
 - O apresentador gira a roleta física
-- As luzes da roleta começam a piscar
-- O sistema de detecção de cores detecta movimento e trava o sistema de jogo
 - A roleta fisíca para em alguma cor aleatória
-- As luzes da roleta param de piscar, para facilitar a detecção de cores
-- O sistema detecta a cor onde a roleta parou e computa os ganhadores, mostrando a animação dos vencedores
+- O sistema detecta a cor onde a roleta parou
 - O sistema fica pronto para a próxima rodada
 
 ## Download
